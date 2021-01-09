@@ -1,3 +1,3 @@
 # Checklist
-Cyberpatriots personal checklist wait does this work
+Cyberpatriots personal checklist
 
