@@ -68,12 +68,13 @@
     
 1. Check for any bad sources: `Sudo gedit /etc/apt/sources.list`
 
-1. Check for any bad sources: `Sudo gedit /etc/hosts`
+1. Check for any any redirects: `Sudo gedit /etc/hosts`
 
 1. Check rc.local: `Sudo gedit /etc/rc.local`
  	* Should be empty except `exit 0`
 	
 1. Check crontab: Check for anything in there, it might be malicious
+	* `sudo crontab -e`
 	* Check CIS
 	* put hashtags on all things
 	* Remove startup tasks
@@ -135,7 +136,7 @@
 		* Implement an account lockout policy.
 			* Open `/etc/pam.d/common-auth`.
 			* Add `deny=5 unlock_time=1800` to the end of the line with `pam_tally2.so` in it.
-			* *(if necessary)* Add “auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800” (all on one line) to the end of the file. This denies password attempts and adds a lockout period.
+			* *(if necessary)* Add `auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800` (all on one line) to the end of the file. This denies password attempts and adds a lockout period.
 	* “Sudo nano /etc/login.defs” change/add to:
 ```		* PASS_MAX_DAYS 90
 		* PASS_MIN_DAYS 7
