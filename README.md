@@ -176,11 +176,11 @@
 	* `sudo unhide-tcp
 
 1. Correct file permissions: Execute the following commands to put correct file permissions on important system files (with sudo): 
-	* `chmod -R 444 /var/log
-	* `chmod 440 /etc/passwd
-	* `chmod 440 /etc/shadow
-	* `chmod 440 /etc/group
-	* `chmod -R 444 /etc/ssh
+	* `chmod -R 444 /var/log`
+	* `chmod 440 /etc/passwd`
+	* `chmod 440 /etc/shadow`
+	* `chmod 440 /etc/group`
+	* `chmod -R 444 /etc/ssh`
 
 1. Run chkrootkit, rkhunter, clam, lynis
 	* (REMINDERS) SSH CHECK LOGS `/var/log/auth.log | grep -i failed NOT`
@@ -201,11 +201,11 @@
 
 1. Add users to Group 
 	* To list all groups: cat /etc/group  
-	* To add a group: `addgroup [groupname] 
-	* To add a user to a group: `adduser [username] [groupname]
-	* To delete a group: `sudo groupdel {group-name-here}
-	* To delete a user: `sudo userdel -r $user
-	* To delete a user from a group: `sudo deluser {user} {group}
+	* To add a group: `addgroup [groupname]`
+	* To add a user to a group: `adduser [username] [groupname]`
+	* To delete a group: `sudo groupdel {group-name-here}`
+	* To delete a user: `sudo userdel -r $user`
+	* To delete a user from a group: `sudo deluser {user} {group}`
 
 1. Antivirus
 	* `Apt-get search clam` - searches for them
