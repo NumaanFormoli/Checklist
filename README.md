@@ -190,6 +190,8 @@
  
 1. Check the PHP scripts
 	* `Find / -name ‘*.php” -type f`
+	
+##CHECK THROUGH CIS BENCHMARK	
 
 ## Useful Information
 
@@ -226,7 +228,6 @@
 	* Apt-listbugs, needrestart, debsecan, debsums - update some of these
 1. Unhide (Shows Hidden Processes & TCP/UDP Ports)
 1. Nmap (Network mapper) -> DELETE AFTER USE
-
 
 
 
