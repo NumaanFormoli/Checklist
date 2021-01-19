@@ -191,7 +191,7 @@
 1. Check the PHP scripts
 	* `Find / -name ‘*.php” -type f`
 	
-##CHECK THROUGH CIS BENCHMARK	
+## CHECK THROUGH CIS BENCHMARK	
 
 ## Useful Information
 
