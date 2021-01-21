@@ -79,6 +79,7 @@
 	* put hashtags on all things
 	* Remove startup tasks
 	* `Sudo ls /var/spool/cron/crontabs` - checks for who has it
+	* `sudo ls /etc/cron.d/anacron` - check for anything
 	* Allow only root in cron
 		* (could do) `gedit /etc/cron.allow and /etc/cron.deny`
 		
@@ -100,6 +101,12 @@
 1. Remove hacking tools. **CHANGE BY CHECKING PRESENTATION**
 	*  Open Ubuntu Software center and look at recently installed software for “nmap”, “ophcrack”, or anything else that looks suspicious. If in doubt look up its name.
 	* (these may not be their actual names in software repositories): `nmap`, `kismet`, `netcat`, `John the Ripper`, `Hydra`, `Aircrack-NG`, `FCrackZIP`, `LCrack`, `OphCrack`, `PDFCrack`, `Pyrit`, `RARCrack`, `SipCrack`, `IRPAS`, `LogKeys`, `Zeitgeist`, `NFS`, `NGINX`, `Inetd`, `VNC`, and `SNMP`, Wireshark
+	* `sudo dpkg-query -l > ~/Desktop/InstalledPkgs.txt`
+		* Output list of installed packages as a .txt file on the desktop
+		* Ctrl f
+			* `sudo apt-get remove program name`
+			* `sudo apt-get purge program name`
+
 	*  `sudo apt list --installed | grep ‘<name>\|<name>|\<name>’`
 	*  **CHANGE** `Sudo apt-get remove <package>`
 	* *(Optional)* Install synaptic (type in installed)
@@ -185,6 +192,16 @@
 
 1. Run chkrootkit, rkhunter, clam, lynis
 	* (REMINDERS) SSH CHECK LOGS `/var/log/auth.log | grep -i failed NOT`
+	
+1. Network Security
+	* sudo gedit /etc/sysctl.d/10-network-security.conf
+	* Ignore ICMP broadcast requests
+	* Disable source packet routing
+	* Ignore send redirects
+	* Block SYN attacks
+	* Log Martians
+	* Ignore ICMP redirects
+	* Ignore Directed pings
 
 1. Check all files with a file permission of 700-777
 	* `find / -type f -perm 777`
