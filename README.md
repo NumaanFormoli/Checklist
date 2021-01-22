@@ -183,15 +183,15 @@
 	* `sudo unhide proc sys brute
 	* `sudo unhide-tcp
 
+1. Run chkrootkit, rkhunter, clam, lynis
+	* (REMINDERS) SSH CHECK LOGS `/var/log/auth.log | grep -i failed NOT`
+
 1. Correct file permissions: Execute the following commands to put correct file permissions on important system files (with sudo): 
 	* `chmod -R 444 /var/log`
 	* `chmod 440 /etc/passwd`
 	* `chmod 440 /etc/shadow`
 	* `chmod 440 /etc/group`
 	* `chmod -R 444 /etc/ssh`
-
-1. Run chkrootkit, rkhunter, clam, lynis
-	* (REMINDERS) SSH CHECK LOGS `/var/log/auth.log | grep -i failed NOT`
 	
 1. Network Security
 	* sudo gedit /etc/sysctl.d/10-network-security.conf
