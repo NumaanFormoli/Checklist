@@ -80,6 +80,7 @@
 	* Remove startup tasks
 	* `Sudo ls /var/spool/cron/crontabs` - checks for who has it
 	* `sudo ls /etc/cron.d/anacron` - check for anything
+	* `sudo gedit  /etc/anacrontab` - check for anything
 	* Allow only root in cron
 		* (could do) `gedit /etc/cron.allow and /etc/cron.deny`
 		
