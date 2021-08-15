@@ -21,8 +21,11 @@
 
 1. To see a list of files and directories that exist in your current working directory, run the ls command:
      `ls`
-        *Add a path and it lists the contents of that directory. If you want to know more about the files, use the -l (--long) option, which tells you the size and date of the file, along with information about ownership and permissions, which we will look at later.
-
+        
+        * Add a path and it lists the contents of that directory. 
+        * If you want to know more about the files, use the -l (--long) option, 
+          which tells you the size and date of the file, 
+          along with information about ownership and permissions, which we will look at later.
 
 1. You can create one or more new directories within your current working directory with the mkdir command, which stands for “make directory”. For example, to create two new directories named testdir1 and testdir2, you might run the following command:
     `mkdir testdir1 testdir2`
@@ -72,3 +75,23 @@
 1. `/var` Where system programs store their data. Web servers keep their pages in /var/www and log files live in /var/log.
 
 1. `/home` Where users' data is kept. Each user has a home directory, generally at /home/username.
+
+
+## Permissions
+
+1. Every file object (that is files, directories and device nodes in / dev) has a set of permissions associated with it, as shown in the screenshot of the output from ls -l. 
+
+1. normally in the form rwxrwxrwx... three letters stand for read, write and execute, and are shown three times for the file's owner, the group it belongs to, and other users.
+
+1. Modified using chmod
+
+      `chmod 755 somefile `
+      
+          - Each permission has a number: 4 is read, 2 is write, and 1 is execute. 
+       
+          - Add them together for each of the user types and you have a three-digit number that 
+       
+          - sets the permissions exactly (there is no equivalent to + or - with this method 
+       
+       
+1. d
