@@ -102,9 +102,117 @@ To enable ONLY security updates, please change the code to look like this:
 
 1. Disable IRQ Balance
 
-    `sudo nano /etc/default/irqbalance
-    : ENABLED="0"'
+        sudo nano /etc/default/irqbalance
+        : ENABLED="0"
 
-
-
+1. OpenSSL Heartbleed Bug
+- It is crutial to fix this issue to version greater or equal to 1.0.1g. You also have to revoke and regenerate new keys and certificates and re-issuing of CA certs and the like in the coming days.
+    
+        openssl version -v
+    
+        # above should be not 1.0.1f or below, otherwise:
+        sudo apt-get update
+        sudo apt-get upgrade openssl libssl-dev
+        apt-cache policy openssl libssl-dev
+    
+        sudo apt-get install make
+        curl https://www.openssl.org/source/openssl-1.0.2f.tar.gz | tar xz && cd openssl-1.0.2f && sudo ./config && sudo make && sudo make install
+        sudo ln -sf /usr/local/ssl/bin/openssl `which openssl`
+    
+        openssl version
+    
 4. remove auto login
+
+5. Secure `tmp` and `/var/tmp`
+
+6. SSH Set Up and Hardening
+    - http://bookofzeus.com/harden-ubuntu/hardening/ssh/
+    - IMPORTANT: IF you change your ssh port, make sure you add the rule in the iptables.
+    - 
+          sudo nano /etc/ssh/sshd_config
+          : Port <port>
+          : Protocol 2
+          : LogLevel VERBOSE
+          : PermitRootLogin no
+          : StrictModes yes
+          : RSAAuthentication yes
+          : IgnoreRhosts yes
+          : RhostsAuthentication no
+          : RhostsRSAAuthentication no
+          : PermitEmptyPasswords no
+          : PasswordAuthentication no
+          : ClientAliveInterval 300
+          : ClientAliveCountMax 0
+          : AllowTcpForwarding no
+          : X11Forwarding no
+          : UseDNS no
+
+          sudo nano /etc/pam.d/sshd	(comment lines below)
+          : #session	optional	pam_motd.so motd=/run/motd.dynamic noupdate
+          : #session	optional	pam_motd.so # [1]
+
+          sudo service ssh restart
+ 
+7. Secure Shared Memory
+  - http://bookofzeus.com/harden-ubuntu/server-setup/set-hostname-and-host/
+ 
+          sudo nano /etc/fstab
+          tmpfs	/run/shm	tmpfs	ro,noexec,nosuid	0 0
+  
+    - If you want to make the changes without rebooting, you can run:
+           
+           sudo mount -a
+  
+8. Set Hostname and Host File
+  
+       sudo nano /etc/hostname
+       : <ip/hostname>
+    
+       sudo nano /etc/hosts
+       : 127.0.0.1	localhost localhost.localdomain <ip/hostname>
+  
+9. Set Locale and Timezone
+
+        sudo locale-gen en_GB.UTF-8
+        sudo update-locale LANG=en_GB.UTF-8
+        sudo dpkg-reconfigure tzdata
+
+10. Set Security Limits
+
+        sudo nano /etc/security/limits.conf
+        : user1 hard nproc 100
+        : @group1 hard nproc 20
+  
+11. IP Spoofing
+
+    sudo nano /etc/host.conf
+    : order bind,hosts
+    : nospoof on
+  
+12. PHP
+- http://bookofzeus.com/harden-ubuntu/hardening/php/
+
+        sudo nano /etc/php/fpm/php.ini
+        : safe_mode = On
+        : safe_mode_gid = On
+        : sql.safe_mode = On
+
+        : register_globals = Off
+        : magic_quotes_gpc = Off
+
+        : expose_php = Off
+        : track_errors = Off
+        : html_errors = Off
+        : display_errors = Off
+
+        : disable_functions = ... system,exec,shell_exec,php_uname,getmyuid,getmypid,leak,listen,diskfreespace,link,ignore_user_abord,dl,set_time_limit,highlight_file,source,show_source,passthru,fpaththru,virtual,posix_ctermid,posix_getcwd,posix_getegid,posix_geteuid,posix_getgid,posix_getgrgid,posix_getgrnam,posix_getgroups,posix_getlogin,posix_getpgid,posix_getpgrp,posix_getpid,posix,_getppid,posix_getpwnam,posix_getpwuid,posix_getrlimit,posix_getsid,posix_getuid,posix_isatty,posix_kill,posix_mkfifo,posix_setegid,posix_seteuid,posix_setgid,posix_setpgid,posix_setsid,posix_setuid,posix_times,posix_ttyname,posix_uname,proc_open,proc_close,proc_get_status,proc_nice,proc_terminate,phpinfo
+        # exceptions: getmypid
+
+        : allow_url_fopen = Off
+        : allow_url_include = Off
+
+        : sql.safe_mode = On
+
+        : session.cookie_httponly = 1
+        : session.referer_check = mydomain.com
+ 
