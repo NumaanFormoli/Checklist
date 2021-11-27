@@ -216,3 +216,4 @@ To enable ONLY security updates, please change the code to look like this:
         : session.cookie_httponly = 1
         : session.referer_check = mydomain.com
  
+13. TO SEARCH - ls -lah
