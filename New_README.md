@@ -29,6 +29,7 @@
         * Inspect `~/Desktop/Script.log`
         
 1. Manage users. 
+    * Run Users.sh
     * Delete any that aren’t supposed to exist. 
     * Undisable the accounts that are supposed to exist. 
     * Make sure everyone who should be admin is admin and everyone who is supposed to be standard is standard. 
